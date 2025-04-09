@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Add will-change for better transition performance */
+  body {
+    @apply bg-gray-50 dark:bg-gray-900;
+    transition: background-color 0.2s ease;
+    will-change: background-color, color;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900 dark:text-white;
+    transition: color 0.2s ease;
+  }
+  
+  p {
+    @apply text-gray-700 dark:text-gray-300;
+    transition: color 0.2s ease;
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply container mx-auto px-4 py-6 md:py-10;
+  }
+  
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold mb-6 text-gray-900 dark:text-white;
+  }
+
+  /* Better transition class for theme changes */
+  .theme-transition {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+}
