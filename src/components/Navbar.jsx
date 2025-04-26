@@ -1,13 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import { SunIcon, MoonIcon, GlobeAltIcon } from "@heroicons/react/24/solid";
 import { Navbar as FlowbiteNavbar, Dropdown } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   // Replace context with Redux
   const { theme } = useSelector(state => state.theme);
   const darkMode = theme === 'dark';
+  
+  // Get current location to determine active link
+  const location = useLocation();
+  const currentPath = location.pathname;
   
   return (
     <FlowbiteNavbar
@@ -56,7 +60,7 @@ export default function Navbar() {
           <FlowbiteNavbar.Link 
             as={Link} 
             to="/" 
-            active
+            active={currentPath === '/'}
             className="py-2 px-3 md:px-4 text-center"
           >
             Home
@@ -64,6 +68,7 @@ export default function Navbar() {
           <FlowbiteNavbar.Link 
             as={Link} 
             to="/about"
+            active={currentPath === '/about'}
             className="py-2 px-3 md:px-4 text-center" 
           >
             About

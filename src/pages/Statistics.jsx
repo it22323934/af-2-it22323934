@@ -6,10 +6,10 @@ import { Alert, Tabs, Card } from 'flowbite-react';
 import { ChartBarIcon, GlobeAltIcon, UsersIcon } from '@heroicons/react/24/outline';
 
 // Import new components
-import RegionFilters from '../components/RegionFilters';
-import PopulationChart from '../components/PopulationChart';
-import RegionChart from '../components/RegionChart';
-import RankingsTable from '../components/RankingsTable';
+import RegionFilters from '../components/statistics/RegionFilters';
+import PopulationChart from '../components/statistics/PopulationChart';
+import RegionChart from '../components/statistics/RegionChart';
+import RankingsTable from '../components/statistics/RankingsTable';
 
 export default function Statistics() {
   // Get theme from Redux store
