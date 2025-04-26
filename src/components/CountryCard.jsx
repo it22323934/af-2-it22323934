@@ -1,5 +1,5 @@
 import { Card, Badge } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HeartIcon, InformationCircleIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { useState, useEffect } from 'react';
@@ -8,6 +8,7 @@ export default function CountryCard({ country }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const navigate = useNavigate();
 
   // Load favorite state from localStorage on component mount
   useEffect(() => {
@@ -36,11 +37,19 @@ export default function CountryCard({ country }) {
     setImageError(true);
   };
 
+  const handleCardClick = (e) => {
+    // Only navigate if the click is not on the buttons
+    const isButtonClick = e.target.closest('button');
+    if (!isButtonClick) {
+      navigate(`/country/${country.cca3}`);
+    }
+  };
+
   return (
-    <Card
-      as={Link}
-      to={`/country/${country.cca3}`}
-      className="overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 h-full"
+    <div 
+      onClick={handleCardClick}
+      className="cursor-pointer overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 h-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-md"
+      data-testid={`country-card-${country.cca3}`}
     >
       <div className="relative h-40 overflow-hidden">
         {!imageError ? (
@@ -124,6 +133,6 @@ export default function CountryCard({ country }) {
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 }
