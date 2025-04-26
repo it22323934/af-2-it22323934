@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorFallback';
 import LoadingSpinner from './components/SuspenseLoadingSpinner';
+import About from './pages/About';
 
 // Lazy load page components for code splitting
 const Home = lazy(() => import('./pages/Home'));
@@ -28,6 +29,7 @@ export default function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/country/:code" element={<CountryDetail />} />
                   <Route path="/statistics" element={<Statistics />} />
+                  <Route path="/about" element={<About/>} />
                 </Routes>
               </Suspense>
             </ErrorBoundary>

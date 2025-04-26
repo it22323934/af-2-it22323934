@@ -12,47 +12,64 @@ export default function Navbar() {
   return (
     <FlowbiteNavbar
       fluid
-      className={`fixed w-full z-20 shadow-md ${
+      className={`fixed w-full z-20 shadow-md py-3 ${
         darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-800"
       }`}
     >
-      <FlowbiteNavbar.Brand as={Link} to="/">
-        <GlobeAltIcon className="h-6 w-6 mr-3 text-blue-500" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold">
-          Country Explorer
-        </span>
-      </FlowbiteNavbar.Brand>
+      <div className="container mx-auto flex flex-wrap items-center justify-between px-4">
+        <FlowbiteNavbar.Brand as={Link} to="/" className="flex items-center space-x-3">
+          <GlobeAltIcon className="h-7 w-7 text-blue-500" />
+          <span className="self-center whitespace-nowrap text-xl font-semibold">
+            Country Explorer
+          </span>
+        </FlowbiteNavbar.Brand>
 
-      <div className="flex md:order-2">
-        <ThemeToggle className="mr-2" />
+        <div className="flex items-center space-x-4 md:order-2">
+          <ThemeToggle className="mr-1" />
 
-        <Dropdown label="Resources" arrowIcon>
-          <Dropdown.Item as={Link} to="/favorites">
-            Favorites
-          </Dropdown.Item>
-          <Dropdown.Item as={Link} to="/statistics">
-            Statistics
-          </Dropdown.Item>
-          <Dropdown.Item
-            as="a"
-            href="https://restcountries.com/"
-            target="_blank"
+          <Dropdown 
+            label="Resources" 
+            arrowIcon 
+            className="ml-2"
+            placement="bottom-end"
           >
-            REST Countries API
-          </Dropdown.Item>
-        </Dropdown>
+            <Dropdown.Item as={Link} to="/favorites" className="px-4 py-2">
+              Favorites
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to="/statistics" className="px-4 py-2">
+              Statistics
+            </Dropdown.Item>
+            <Dropdown.Item
+              as="a"
+              href="https://restcountries.com/"
+              target="_blank"
+              className="px-4 py-2"
+            >
+              REST Countries API
+            </Dropdown.Item>
+          </Dropdown>
 
-        <FlowbiteNavbar.Toggle />
+          <FlowbiteNavbar.Toggle className="ml-2 p-2" />
+        </div>
+
+        <FlowbiteNavbar.Collapse className="md:mx-4">
+          <FlowbiteNavbar.Link 
+            as={Link} 
+            to="/" 
+            active
+            className="py-2 px-3 md:px-4 text-center"
+          >
+            Home
+          </FlowbiteNavbar.Link>
+          <FlowbiteNavbar.Link 
+            as={Link} 
+            to="/about"
+            className="py-2 px-3 md:px-4 text-center" 
+          >
+            About
+          </FlowbiteNavbar.Link>
+        </FlowbiteNavbar.Collapse>
       </div>
-
-      <FlowbiteNavbar.Collapse>
-        <FlowbiteNavbar.Link as={Link} to="/" active>
-          Home
-        </FlowbiteNavbar.Link>
-        <FlowbiteNavbar.Link as={Link} to="/about">
-          About
-        </FlowbiteNavbar.Link>
-      </FlowbiteNavbar.Collapse>
     </FlowbiteNavbar>
   );
 }
